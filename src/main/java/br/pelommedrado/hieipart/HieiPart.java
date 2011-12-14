@@ -29,6 +29,7 @@ public class HieiPart {
 	public HieiPart() {
 		super();
 
+		//crair saido da particicao do arquivo para disco
 		this.output = new HieiOutputStream();
 	}
 
@@ -38,30 +39,38 @@ public class HieiPart {
 	 * @throws IOException 
 	 */
 	public void retalhar(IHieiFile file) throws IOException {
+		//criar particionador de arquivo
 		IHieiParticionador particionador = new HieiParticionador(file);
+		
+		//realizar o processo de particionamento do arquivo
 		List<IHieiPart> parts = particionador.particionar();
 
 		try {
+			//varrer cada particao doa rquivo
 			for (IHieiPart iHieiPart : parts) {
+				//escrever particao no disco
 				output.write(iHieiPart);
 			}
+			
 		} finally {
+			//fechar IO
 			output.close();
 		}
 		
+		//crair arquivo de infoa
 		criarFileParts(file, parts);
 	}
 
 	/**
-	 * a
 	 * @param file
 	 * @param parts
 	 * @throws IOException
 	 */
 	private void criarFileParts(IHieiFile file, List<IHieiPart> parts) throws IOException {
+		//crair referencia para o arquivo original
 		final File fileOriginal  = new File(file.getPath());
 		
-		Properties props = new Properties();
+		final Properties props = new Properties();
 		props.setProperty("nome", fileOriginal.getName());
 		props.setProperty("size", String.valueOf(fileOriginal.length()));
 		props.setProperty("numParts", String.valueOf(parts.size()));

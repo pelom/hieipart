@@ -34,33 +34,37 @@ public class HieiOutputStream implements IHieiOutputStream {
 	 */
 	@Override
 	public long write(IHieiPart part) throws IOException {
+		//abrir entrada de dados
 		in = new FileInputStream(parseFileName(part.getNome()));
 		in.skip(part.getOff());
-		
+
+		//abrir saida de dados
 		out = new FileOutputStream(part.getNome());
 
-		byte[] buf = new byte[1024];
 		int bytes = 0;
 		long total = 0;
+		final byte[] buf = new byte[1024];
 
 		while ((bytes = in.read(buf)) != -1) {
-
+			//o total ja foi atingindo?
 			if(total == part.getLen()) {
 				return total;
-				
+
+				//os arquivos lidos ultrapassam o tamanho da parte?
 			} else if( (total + bytes) > part.getLen()) {
-				long l = ( (total+ bytes) - part.getLen() );
-				
-				out.write(buf, 0, (int) l);
-				total += l;
-				
+
+				long read = ( (total+ bytes) - part.getLen() );
+
+				out.write(buf, 0, (int) read);
+				total += read;
+
 				return total;
 			}
 
 			out.write(buf, 0, bytes);
 			total += bytes;
 		}
-		
+
 		return total;
 	}
 
