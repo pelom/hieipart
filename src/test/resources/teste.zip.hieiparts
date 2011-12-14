@@ -1,0 +1,13 @@
+#parametros para reconstruir o arquivo
+#Wed Dec 14 17:18:13 BRST 2011
+
+nome=teste.zip
+numParts=3
+size=2400794
+partSize0=1048576
+partSize1=1048576
+partSize2=303642
+
+part0=teste.zip.part0
+part1=teste.zip.part1
+part2=teste.zip.part2
