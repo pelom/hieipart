@@ -9,9 +9,6 @@ import java.io.IOException;
  * @author Andre Leite
  */
 public interface IHieiParticionador {
-
-	public static final String EXT = ".part";
-	
 	/**
 	 * 
 	 * @return

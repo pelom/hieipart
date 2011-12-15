@@ -31,7 +31,7 @@ public class HieiTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		pathName = "src/test/resources/teste.zip";
+		pathName = "src/test/resources/teste.tar.gz";
 		hieiFile = new HieiFile(pathName);
 		hieiPart = new Hiei();
 	}

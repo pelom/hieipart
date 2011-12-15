@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.pelommedrado.hieipart.Hiei;
 import br.pelommedrado.hieipart.HieiInfo;
 import br.pelommedrado.hieipart.IHieiFile;
 import br.pelommedrado.hieipart.IHieiPart;
@@ -64,7 +65,7 @@ public class HieiParticionador implements IHieiParticionador {
 		long falta = 0;
 
 		for (int i = 0; i < numPart; i++) {
-			nomePart = hieiFile.getPath() + EXT + i;
+			nomePart = hieiFile.getPath() + Hiei.EXT_INFO + i;
 
 			falta = (size - bytes);
 

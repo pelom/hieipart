@@ -1,0 +1,11 @@
+#parametros para reconstruir o arquivo
+#Thu Dec 15 21:53:53 BRST 2011
+nome=teste.tar.gz
+partSize2=957655
+partSize1=1048576
+part2=teste.tar.gz.hieipart2
+partSize0=1048576
+part1=teste.tar.gz.hieipart1
+part0=teste.tar.gz.hieipart0
+numParts=3
+size=3054807

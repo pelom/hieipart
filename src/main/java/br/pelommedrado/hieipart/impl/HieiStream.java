@@ -7,8 +7,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
+import br.pelommedrado.hieipart.Hiei;
 import br.pelommedrado.hieipart.IHieiPart;
-import br.pelommedrado.hieipart.IHieiParticionador;
 import br.pelommedrado.hieipart.IHieiStream;
 
 /**
@@ -74,7 +74,7 @@ public class HieiStream implements IHieiStream {
 	 * @return
 	 */
 	private String parseFileName(String nome) {
-		return nome.replaceAll("\\" + IHieiParticionador.EXT + "[0-9]*", "");
+		return nome.replaceAll("\\" + Hiei.EXT_INFO + "[0-9]*", "");
 	}
 
 	/**
