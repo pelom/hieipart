@@ -5,6 +5,7 @@ package br.pelommedrado.hieipart.impl;
 
 import java.io.File;
 
+import br.pelommedrado.hieipart.HieiInfo;
 import br.pelommedrado.hieipart.IHieiFile;
 import br.pelommedrado.hieipart.IHieiPart;
 
@@ -14,6 +15,9 @@ import br.pelommedrado.hieipart.IHieiPart;
 public class HieiFile implements IHieiFile {
 	/** Referencia ao arquivo **/
 	private File file = null;
+	
+	/** Informacao do arquivo retalhado **/
+	private HieiInfo info;
 	
 	/**
 	 * Construtor da classe.
@@ -56,5 +60,37 @@ public class HieiFile implements IHieiFile {
 	public int getNumPart() {
 		long len = getLength();
 		return (int) Math.ceil( ((double) len / IHieiPart.PART_SIZE_MAX) );
+	}
+
+	/**
+	 * 
+	 */
+	@Override
+	public HieiInfo getInfo() {
+		return info;
+	}
+
+	/**
+	 * 
+	 */
+	@Override
+	public void setHieiInfo(HieiInfo info) {
+		this.info = info;
+	}
+	
+	/**
+	 * 
+	 */
+	@Override
+	public String getNome() {
+		return file.getName();
+	}
+
+	/**
+	 * 
+	 */
+	@Override
+	public boolean excluir() {
+		return file.delete();
 	}
 }

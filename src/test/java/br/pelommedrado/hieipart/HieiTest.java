@@ -14,13 +14,16 @@ import br.pelommedrado.hieipart.impl.HieiFile;
 /**
  * @author Andre Leite
  */
-public class HieiPartTest {
+public class HieiTest {
 
 	/** Arquivo **/
-	private HieiPart hieiPart;
+	private Hiei hieiPart;
 	
 	/** Arquivo a ser particionado **/
 	private IHieiFile hieiFile;
+	
+	/** path do arquivo **/
+	private String pathName;
 	
 	/**
 	 * 
@@ -28,8 +31,9 @@ public class HieiPartTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		hieiFile = new HieiFile("src/test/resources/teste.zip");
-		hieiPart = new HieiPart();
+		pathName = "src/test/resources/teste.zip";
+		hieiFile = new HieiFile(pathName);
+		hieiPart = new Hiei();
 	}
 
 	/**
@@ -41,6 +45,13 @@ public class HieiPartTest {
 		hieiPart = null;
 	}
 
+	@Test
+	public void testCompor() throws Exception {
+		hieiPart.compor(pathName);
+		
+		Assert.assertEquals(true, new File(hieiFile.getPath()).exists());
+	}
+	
 	/**
 	 * 
 	 * @throws IOException
@@ -49,6 +60,6 @@ public class HieiPartTest {
 	public void testRetalhacao() throws IOException {
 		hieiPart.retalhar(hieiFile);
 		
-		Assert.assertEquals(true, new File(hieiFile.getPath() + HieiPart.EXT_INFO).exists());	
+		Assert.assertEquals(true, new File(hieiFile.getPath() + Hiei.EXT_INFO).exists());	
 	}
 }

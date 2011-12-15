@@ -8,8 +8,10 @@ import java.io.IOException;
 /**
  * @author Andre Leite
  */
-public interface IHieiOutputStream {
+public interface IHieiStream {
 
+	public long read(IHieiPart part) throws IOException;
+	
 	/**
 	 * 
 	 * @param part

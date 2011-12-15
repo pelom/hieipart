@@ -4,7 +4,6 @@
 package br.pelommedrado.hieipart.impl;
 
 import java.io.IOException;
-import java.util.List;
 
 import junit.framework.Assert;
 
@@ -13,7 +12,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import br.pelommedrado.hieipart.IHieiFile;
-import br.pelommedrado.hieipart.IHieiPart;
 import br.pelommedrado.hieipart.IHieiParticionador;
 
 /**
@@ -50,8 +48,8 @@ public class HieiParticionadorTest {
 	 */
 	@Test
 	public void testParticionar() throws IOException {
-		List<IHieiPart> lista = particionador.particionar();
+		particionador.particionar();
 		
-		Assert.assertEquals(3, lista.size());
+		Assert.assertEquals(3, hieiFile.getNumPart());
 	}
 }

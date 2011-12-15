@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.pelommedrado.hieipart.HieiInfo;
 import br.pelommedrado.hieipart.IHieiFile;
 import br.pelommedrado.hieipart.IHieiPart;
 import br.pelommedrado.hieipart.IHieiParticionador;
@@ -40,7 +41,7 @@ public class HieiParticionador implements IHieiParticionador {
 	 * @see br.pelommedrado.hieipart.IHieiParticionador#particionar(br.pelommedrado.hieipart.IHieiFile)
 	 */
 	@Override
-	public List<IHieiPart> particionar() throws IOException {
+	public void particionar() throws IOException {
 
 		if(hieiFile == null) {
 			throw new IllegalArgumentException("nenhum arquivo foi informacao");	
@@ -78,7 +79,9 @@ public class HieiParticionador implements IHieiParticionador {
 			}
 		}
 
-		return parts;
+		HieiInfo info = new HieiInfo();
+		info.setParts(parts);
+		hieiFile.setHieiInfo(info);
 	}
 
 	/**

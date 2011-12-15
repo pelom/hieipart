@@ -4,28 +4,28 @@
 package br.pelommedrado.hieipart.impl;
 
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.RandomAccessFile;
 
-import br.pelommedrado.hieipart.IHieiOutputStream;
 import br.pelommedrado.hieipart.IHieiPart;
 import br.pelommedrado.hieipart.IHieiParticionador;
+import br.pelommedrado.hieipart.IHieiStream;
 
 /**
  * @author Andre Leite
  */
-public class HieiOutputStream implements IHieiOutputStream {
+public class HieiStream implements IHieiStream {
 
 	/** Entrada de dados **/
 	private FileInputStream in;
 
 	/** Saida de dados **/
-	private FileOutputStream out;
+	private RandomAccessFile out;
 
 	/**
 	 * Construtor da classe.
 	 */
-	public HieiOutputStream() {
+	public HieiStream() {
 		super();
 	}
 
@@ -39,7 +39,7 @@ public class HieiOutputStream implements IHieiOutputStream {
 		in.skip(part.getOff());
 
 		//abrir saida de dados
-		out = new FileOutputStream(part.getNome());
+		out = new RandomAccessFile(part.getNome(), "rw");
 
 		int bytes = 0;
 		long total = 0;
@@ -89,5 +89,29 @@ public class HieiOutputStream implements IHieiOutputStream {
 		if(out != null) {
 			out.close();
 		}
+	}
+
+	/**
+	 * 
+	 */
+	@Override
+	public long read(IHieiPart part) throws IOException {
+		//abrir entrada de dados
+		in = new FileInputStream(part.getNome());
+		
+		//abrir saida de dados
+		out = new RandomAccessFile(parseFileName(part.getNome()), "rw");
+		out.seek(part.getOff());
+		
+		int bytes = 0;
+		long total = 0;
+		final byte[] buf = new byte[1024];
+
+		while ((bytes = in.read(buf)) != -1) {
+			out.write(buf, 0, bytes);
+			total += bytes;
+		}
+		
+		return total;
 	}
 }

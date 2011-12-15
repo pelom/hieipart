@@ -9,22 +9,22 @@ import junit.framework.Assert;
 import org.junit.Test;
 
 import br.pelommedrado.hieipart.IHieiFile;
-import br.pelommedrado.hieipart.IHieiOutputStream;
 import br.pelommedrado.hieipart.IHieiPart;
 import br.pelommedrado.hieipart.IHieiParticionador;
+import br.pelommedrado.hieipart.IHieiStream;
 
 /**
  * @author Andre Leite
  */
-public class HieiOutputStreamTest {
+public class HieiStreamTest {
 
 	@Test
 	public void testOutputPart() throws IOException {
 		IHieiFile hieiFile = new HieiFile("src/test/resources/teste.zip");
 		IHieiParticionador particionador = new HieiParticionador(hieiFile);
-
-		List<IHieiPart> lista = particionador.particionar();
-		IHieiOutputStream out = new HieiOutputStream();
+		particionador.particionar();
+		List<IHieiPart> lista = hieiFile.getInfo().getParts();
+		IHieiStream out = new HieiStream();
 		
 		try {
 			Assert.assertEquals(lista.get(0).getLen(), out.write(lista.get(0)));	

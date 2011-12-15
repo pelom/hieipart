@@ -4,7 +4,6 @@
 package br.pelommedrado.hieipart;
 
 import java.io.IOException;
-import java.util.List;
 
 /**
  * @author Andre Leite
@@ -18,7 +17,7 @@ public interface IHieiParticionador {
 	 * @return
 	 * @throws IOExceptio
 	 */
-	public List<IHieiPart> particionar() throws IOException;
+	public void particionar() throws IOException;
 	
 	/**
 	 * 
